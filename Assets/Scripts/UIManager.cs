@@ -5,6 +5,8 @@ public class UIManager : MonoBehaviour
     public TMPro.TextMeshProUGUI score;
     public TMPro.TextMeshProUGUI time;
 
+    public TMPro.TextMeshProUGUI bestScore;
+
     public GameObject startButton;
     private GameManager _gameManager;
 
@@ -21,6 +23,8 @@ public class UIManager : MonoBehaviour
         int minutes = Mathf.FloorToInt(remainingTime / 60);
         int seconds = Mathf.FloorToInt(remainingTime % 60);
         time.text = $"{minutes:00}:{seconds:00}";
+
+        bestScore.text = $"Best : {_gameManager.ScoreManager.BestScore}";
     }
 
     public void StartGame()
