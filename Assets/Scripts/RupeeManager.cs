@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using System;
+
 public class RupeeManager : MonoBehaviour
 {
     public Transform spawner;
@@ -9,6 +11,8 @@ public class RupeeManager : MonoBehaviour
     public float spawnDelay = 2f;
     private readonly List<Rupee> _rupees = new List<Rupee>();
     private Coroutine _spawnRoutine;
+
+    public event Action<Rupee> OnRupeeCollected;
 
     private void Start()
     {
@@ -24,6 +28,7 @@ public class RupeeManager : MonoBehaviour
     {
         var rupee = Instantiate(prefab, spawner.position, Quaternion.identity);
         rupee.transform.parent = container;
+        AddRupee(rupee);
     }
 
     private IEnumerator SpawnRoutine()
@@ -33,4 +38,21 @@ public class RupeeManager : MonoBehaviour
         StartSpawning();
     }
 
+    private void AddRupee(Rupee rupee)
+    {
+        rupee.OnRupeeCollected += RupeeCollectionHandler;
+        _rupees.Add(rupee);
+    }
+
+    private void RemoveRupee(Rupee rupee)
+    {
+        rupee.OnRupeeCollected -= RupeeCollectionHandler;
+        _rupees.Remove(rupee);
+    }
+
+    private void RupeeCollectionHandler(Rupee rupee)
+    {
+        OnRupeeCollected?.Invoke(rupee);
+        RemoveRupee(rupee);
+    }
 }
