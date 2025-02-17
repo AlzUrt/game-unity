@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public ScoreManager ScoreManager { get; private set; }
     public UIManager UIManager { get; private set; }
     public TimeManager TimeManager { get; private set; }
+    public AudioManager AudioManager { get; private set; }
     private void Awake()
     {
         if (Instance == null)
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
         ScoreManager = GetComponent<ScoreManager>();
         TimeManager = GetComponent<TimeManager>();
         UIManager = GetComponent<UIManager>();
+        AudioManager = GetComponent<AudioManager>();
     }
 
     private void Start()
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
         TimeManager.StartTimer();
         ScoreManager.startGame();
         RupeeManager.StartSpawning();
+        AudioManager.StartGame();
     }
 
     public void StopGame()
@@ -50,5 +53,6 @@ public class GameManager : MonoBehaviour
         RupeeManager.StopSpawning();
         RupeeManager.DestroyAllRupees();
         TimeManager.StopTimer();
+        AudioManager.StopGame();
     }
 }
