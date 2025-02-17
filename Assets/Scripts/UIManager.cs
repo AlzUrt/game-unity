@@ -3,6 +3,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public TMPro.TextMeshProUGUI score;
+    public TMPro.TextMeshProUGUI time;
 
     private GameManager _gameManager;
 
@@ -14,5 +15,6 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         score.text = $"Score: {_gameManager.ScoreManager.Score}";
+        time.text = $"Time: {_gameManager.TimeManager.RemainingTime.ToString("0.00")}";
     }
 }
