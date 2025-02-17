@@ -41,10 +41,14 @@ public class GameManager : MonoBehaviour
         UIManager.StartGame();
         TimeManager.StartTimer();
         ScoreManager.startGame();
+        RupeeManager.StartSpawning();
     }
 
     public void StopGame()
     {
         UIManager.StopGame();
+        RupeeManager.StopSpawning();
+        RupeeManager.DestroyAllRupees();
+        TimeManager.StopTimer();
     }
 }
