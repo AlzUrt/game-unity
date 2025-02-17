@@ -17,4 +17,9 @@ public class ScoreManager : MonoBehaviour
         Score++;
         Debug.Log($"Score: {Score}");
     }
+
+    public void startGame()
+    {
+        Score = 0;
+    }
 }

@@ -5,6 +5,7 @@ public class UIManager : MonoBehaviour
     public TMPro.TextMeshProUGUI score;
     public TMPro.TextMeshProUGUI time;
 
+    public GameObject startButton;
     private GameManager _gameManager;
 
     private void Awake()
@@ -15,6 +16,20 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         score.text = $"Score: {_gameManager.ScoreManager.Score}";
-        time.text = $"Time: {_gameManager.TimeManager.RemainingTime.ToString("0.00")}";
+
+        float remainingTime = _gameManager.TimeManager.RemainingTime;
+        int minutes = Mathf.FloorToInt(remainingTime / 60);
+        int seconds = Mathf.FloorToInt(remainingTime % 60);
+        time.text = $"{minutes:00}:{seconds:00}";
+    }
+
+    public void StartGame()
+    {
+        startButton.SetActive(false);
+    }
+
+    public void StopGame()
+    {
+        startButton.SetActive(true);
     }
 }

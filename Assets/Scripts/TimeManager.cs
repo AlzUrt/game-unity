@@ -4,7 +4,7 @@ using System;
 public class TimeManager : MonoBehaviour
 {
 
-    public float duration = 120f;
+    public float duration = 20f;
     public event Action OnTimeOver;
     public bool Running { get; private set; }
     public float RemainingTime { get; private set; }

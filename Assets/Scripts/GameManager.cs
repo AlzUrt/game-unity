@@ -26,7 +26,25 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        TimeManager.OnTimeOver += TimeOverHandler;
+    }
+
+    private void TimeOverHandler()
+    {
+        StopGame();
+    }
+
+    public void StartGame()
+    {
         TimeManager.reset();
+
+        UIManager.StartGame();
         TimeManager.StartTimer();
+        ScoreManager.startGame();
+    }
+
+    public void StopGame()
+    {
+        UIManager.StopGame();
     }
 }
